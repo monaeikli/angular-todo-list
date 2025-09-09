@@ -10,13 +10,10 @@ export class TodoService {
   private apiUrl = 'https://boolean-uk-api-server.fly.dev/monaeikli/todo';
   constructor(private http: HttpClient) {}
 
- 
-  // Hent alle todos fra API
-  getTodos(): Observable<Todo[]> {
+   getTodos(): Observable<Todo[]> {
     return this.http.get<Todo[]>(this.apiUrl);
   }
 
-  // Opprett en ny todo via API
   addTodo(title: string): Observable<Todo> {
     const todo = {
       title: title,
@@ -25,7 +22,6 @@ export class TodoService {
     return this.http.post<Todo>(this.apiUrl, todo);
   }
 
-  // Oppdater en todo via API (PUT)
   updateTodo(updatedTodo: Todo): Observable<Todo> {
     return this.http.put<Todo>(`${this.apiUrl}/${updatedTodo.id}`, updatedTodo);
   }
